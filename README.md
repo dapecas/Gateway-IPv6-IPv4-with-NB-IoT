@@ -8,3 +8,8 @@ For this purpose, a hub and two environmental sensors with IEEE 802.15.4 connect
 The IoT network hub runs an API created with the Flask microframework in Python language. On the FiPy, it runs a program created in MicroPython. The API is able to make CoAP requests from the hub to the environmental sensors. The FiPy module makes requests to the API via WiFi connection and sends the data via NB-IoT to Pybytes, the integration platform of Pycom (developer of FiPy). From there, Pybytes will send the data to Home Assistant thanks to a Web Hook integration.
 
 At Home Asisstant, data arrives, is processed and stored in an InfluxDB database. This database has been connected to Grafana to create dynamic and customisable control panels.
+
+The branch files are:
+  - APi...: service running on the IoT network hub.
+  - configu...: YAML configuration file of the Home Assistan service.
+  - FiPyProgram: program running on the FiPy.
