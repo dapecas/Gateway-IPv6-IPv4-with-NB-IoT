@@ -1,0 +1,126 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+api:
+
+input_text:
+  batsense_1:
+    max: 255
+
+binary_sensor:
+  - platform: template
+    sensors:
+      bs79_presence:
+        friendly_name: "Presence_79"
+        device_class: presence
+        unique_id: "binarysensor.bs_79_pres_20230721_0"
+        value_template: "{{ states('input_text.batsense_1').split(',')[8] == '1'}}"
+      bs80_presence:
+        friendly_name: "Presence_80"
+        device_class: presence
+        unique_id: "binarysensor.bs_80_pres_20230721_0"
+        value_template: "{{ states('input_text.batsense_1').split(',')[18] == '1'}}"
+
+sensor:
+  - platform: template
+    sensors:
+      bs79_net:
+        friendly_name: "NetID_79"
+        unique_id: "sensor.bs_79_net_20230721_0"
+        value_template: "{{ states('input_text.batsense_1').split(',')[0]}}"
+      bs79_nameshort:
+        unique_id: "sensor.bs_79_name_20072023_0"
+        friendly_name: "Name_79"
+        value_template: "{{ states('input_text.batsense_1').split(',')[1]}}"
+      bs79_timestamp:
+        unique_id: "sensor.bs_79_time_20230721_0"
+        friendly_name: "Timestamp_79"
+        #device_class: timestamp
+        value_template: "{{ states('input_text.batsense_1').split(',')[3]}}"
+      bs79_temperature:
+        unique_id: "sensor.bs_79_temp_20230721_0"
+        friendly_name: "Temperature_79"
+        device_class: temperature
+        unit_of_measurement: "°C"
+        value_template: "{{ states('input_text.batsense_1').split(',')[4]}}"
+      bs79_humidity:
+        unique_id: "sensor.bs_79_hum_20230721_0"
+        friendly_name: "Humidity_79"
+        device_class: humidity
+        unit_of_measurement: "%"
+        value_template: "{{ states('input_text.batsense_1').split(',')[5]}}"
+      bs79_luminosity:
+        unique_id: "sensor.bs_79_lum_20230721_0"
+        friendly_name: "Luminosity_79"
+        device_class: illuminance
+        unit_of_measurement: "lux"
+        value_template: "{{ states('input_text.batsense_1').split(',')[7]}}"
+      bs79_rssi:
+        unique_id: "sensor.bs_79_rssi_20230721_0"
+        friendly_name: "Rssi_79"
+        device_class: signal_strength
+        unit_of_measurement: "dBm"
+        value_template: "{{ states('input_text.batsense_1').split(',')[9]}}"
+      name_batsense:
+        unique_id: "sensor.bs_80_name_20230721_0"
+        friendly_name: "Name_80"
+        value_template: "{{ states('input_text.batsense_1').split(',')[11]}}"
+      bs80_net:
+        unique_id: "sensor.bs_80_net_20230721_0"
+        friendly_name: "NetID_80"
+        value_template: "{{ states('input_text.batsense_1').split(',')[10]}}"
+      bs80_timestamp:
+        unique_id: "sensor.bs_80_time_20230721_0"
+        friendly_name: "Timestamp_80"
+        #device_class: timestamp
+        value_template: "{{ states('input_text.batsense_1').split(',')[13]}}"
+      bs80_temperature:
+        unique_id: "sensor.bs_80_temp_20230721_0"
+        friendly_name: "Temperature_80"
+        device_class: temperature
+        unit_of_measurement: "°C"
+        value_template: "{{ states('input_text.batsense_1').split(',')[14]}}"
+      bs80_humidity:
+        unique_id: "sensor.bs_80_hum_20230721_0"
+        friendly_name: "Humidity_80"
+        device_class: humidity
+        unit_of_measurement: "%"
+        value_template: "{{ states('input_text.batsense_1').split(',')[15]}}"
+      bs80_luminosity:
+        unique_id: "sensor.bs_80_lum_20230721_0"
+        friendly_name: "Luminosity_80"
+        device_class: illuminance
+        unit_of_measurement: "lux"
+        value_template: "{{ states('input_text.batsense_1').split(',')[17]}}"
+      bs80_rssi:
+        unique_id: "sensor.bs_80_rssi_20230721_0"
+        friendly_name: "Rssi_80"
+        device_class: signal_strength
+        unit_of_measurement: "dBm"
+        value_template: "{{ states('input_text.batsense_1').split(',')[19]}}"
+
+influxdb:
+  host: 127.0.0.1
+  port: 8086
+  database: homeassistant
+  username: homeassistant
+  password: -------
+  max_retries: 8
+  default_measurement: state
+
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 172.30.33.0/24
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+# Text-to-speech
+tts:
+  - platform: google_translate
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
