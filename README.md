@@ -10,6 +10,7 @@ The IoT network hub runs an API created with the Flask microframework in Python 
 At Home Asisstant, data arrives, is processed and stored in an InfluxDB database. This database has been connected to Grafana to create dynamic and customisable control panels.
 
 The branch files are:
-  - APi...: service running on the IoT network hub.
-  - configu...: YAML configuration file of the Home Assistan service.
-  - FiPyProgram: program running on the FiPy.
+  - API_Flask_IoTHUB.py: service running on the IoT network hub.
+  - FiPy_Program_Petition-Send.py: program running on the FiPy.
+  - configuration.yaml: YAML configuration file of the Home Assistan service.
+
